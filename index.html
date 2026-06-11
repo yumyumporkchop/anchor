@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>Anchor · Bart</title>
+<meta name="theme-color" content="#0f4c75">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Anchor">
+<meta name="mobile-web-app-capable" content="yes">
+
+<link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkFuY2hvciIsCiAgInNob3J0X25hbWUiOiAiQW5jaG9yIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmNmY1ZjEiLAogICJ0aGVtZV9jb2xvciI6ICIjMGY0Yzc1IiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFt7CiAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0EwT0RBZ05EZ3dJajQ4Y21WamRDQjNhV1IwYUQwaU5EZ3dJaUJvWldsbmFIUTlJalE0TUNJZ1ptbHNiRDBpSXpCbU5HTTNOU0lnTHo0OGRHVjRkQ0I0UFNJeU5EQWlJSGs5SWpJM01DSWdabTl1ZEMxbVlXMXBiSGs5SWtGeWFXRnNJaUJtYjI1MExYTnBlbVU5SWpJNE1DSWdabTl1ZEMxM1pXbG5hSFE5SWpnd01DSWdkR1Y0ZEMxaGJtTm9iM0k5SW0xcFpHUnNaU0lnWm1sc2JEMGlJMlptWmlJK1FUd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICJzaXplcyI6ICI0ODB4NDgwIiwKICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgfV0KfQ==">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgNDgwIj48cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjQ4MCIgZmlsbD0iIzBmNGM3NSIvPjx0ZXh0IHg9IjI0MCIgeT0iMjcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjgwIiBmb250LXdlaWdodD0iODAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmIj5BPC90ZXh0Pjwvc3ZnPg==">
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f6f5f1;
+    --panel: #ffffff;
+    --ink: #0f172a;
+    --slate: #334155;
+    --muted: #64748b;
+    --line: #e7e5e0;
+    --line-soft: #f1f0eb;
+    --brand: #0f4c75;
+    --brand-soft: #e0eef7;
+    --accent: #b8763e;
+    --gold: #fbbf24;
+    --good: #16a34a;
+    --good-soft: #dcfce7;
+    --warn: #ea580c;
+    --warn-soft: #ffedd5;
+    --bad: #dc2626;
+    --bad-soft: #fee2e2;
+    --money: #15803d;
+    --money-soft: #d1fae5;
+    --body: #7c3aed;
+    --body-soft: #ede9fe;
+    --pill: #fafaf7;
+    --safe-top: env(safe-area-inset-top);
+    --safe-bot: env(safe-area-inset-bottom);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.45;
+    -webkit-font-smoothing: antialiased; overscroll-behavior-y: contain;
+    padding-top: var(--safe-top);
+    padding-bottom: calc(var(--safe-bot) + 84px);
+  }
+  .app { max-width: 520px; margin: 0 auto; padding: 8px 14px 28px; }
+
+  /* Top */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 12px 4px 6px; }
+  .greet { font-size: 17px; font-weight: 800; letter-spacing: -.3px; }
+  .greet small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+  .voice-mini { display: flex; gap: 4px; background: var(--panel); padding: 4px; border-radius: 10px; border: 1px solid var(--line); }
+  .vbtn { border: 0; background: transparent; padding: 6px 8px; font-size: 14px; cursor: pointer; border-radius: 7px; }
+  .vbtn.on { background: var(--ink); color: #fff; }
+
+  /* Voice line */
+  .voiceline {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 14px 16px; margin-bottom: 12px;
+    font-size: 14px; font-style: italic; color: var(--slate); line-height: 1.55;
+  }
+  .voiceline b { font-style: normal; color: var(--ink); }
+  .voice-tag {
+    display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: 1px;
+    color: var(--brand); text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  /* Fire */
+  .fire {
+    background: linear-gradient(135deg, #fff7ed, #fee2e2);
+    border: 1px solid #fda4af; border-radius: 14px;
+    padding: 14px; margin-bottom: 12px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .fire-icon { font-size: 22px; line-height: 1; }
+  .fire-label { font-size: 9px; font-weight: 800; letter-spacing: 1px; color: var(--bad); text-transform: uppercase; }
+  .fire-title { font-size: 14px; font-weight: 700; margin-top: 2px; }
+  .fire-body { font-size: 12px; color: var(--slate); margin-top: 4px; line-height: 1.45; }
+  .fire-btn {
+    background: var(--bad); color: #fff; border: 0; padding: 10px 14px;
+    border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer;
+    margin-top: 8px; font-family: inherit; width: 100%;
+  }
+
+  /* Card */
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
+  .card-h { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px 8px; }
+  .card-h h2 { margin: 0; font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; }
+  .card-h .meta { font-size: 10px; color: var(--muted); }
+  .card-b { padding: 0 16px 16px; }
+
+  /* Focus */
+  .focus-box {
+    border: 2px dashed var(--line); border-radius: 12px;
+    padding: 14px; min-height: 60px; font-size: 16px; font-weight: 600;
+    outline: none; line-height: 1.4;
+  }
+  .focus-box:focus { border-color: var(--brand); }
+  .focus-box:empty:before { content: "Tap. Type ONE thing."; color: var(--muted); font-weight: 400; font-style: italic; font-size: 14px; }
+
+  /* Quick log buttons (Body view) */
+  .quick-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+  .quick-btn {
+    background: var(--pill); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 6px; display: flex; flex-direction: column; align-items: center;
+    gap: 4px; cursor: pointer; font-family: inherit;
+  }
+  .quick-btn:active { background: var(--brand-soft); }
+  .quick-ico { font-size: 22px; }
+  .quick-l { font-size: 10px; font-weight: 700; color: var(--slate); letter-spacing: .3px; }
+
+  /* Body score */
+  .body-score { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .bs {
+    background: var(--pill); border: 1px solid var(--line); border-radius: 10px;
+    padding: 8px 6px; text-align: center;
+  }
+  .bs-icon { font-size: 16px; }
+  .bs-v { font-size: 14px; font-weight: 800; margin-top: 2px; }
+  .bs-l { font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+
+  /* Business tiles */
+  .biz-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .tile { background: var(--pill); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .tile-name { font-size: 13px; font-weight: 700; letter-spacing: -.2px; }
+  .tile-tag { display: inline-block; margin-top: 4px; font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase; }
+  .t-launch { background: var(--brand-soft); color: var(--brand); }
+  .t-active { background: var(--good-soft); color: var(--good); }
+  .t-warn { background: var(--warn-soft); color: var(--warn); }
+  .tile-money { font-size: 11px; color: var(--slate); margin-top: 6px; font-weight: 600; }
+
+  /* Money math compact */
+  .m-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .m { background: var(--pill); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+  .m-k { font-size: 9px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .8px; }
+  .m-v { font-size: 16px; font-weight: 800; color: var(--accent); margin-top: 2px; }
+  .m-n { font-size: 10px; color: var(--slate); margin-top: 2px; line-height: 1.35; }
+
+  /* Goals */
+  .goal { background: var(--pill); border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin-bottom: 8px; }
+  .goal-k { font-size: 10px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .8px; }
+  .goal-body { font-size: 13px; min-height: 40px; outline: none; margin-top: 6px; line-height: 1.45; }
+  .goal-body:empty:before { content: attr(data-placeholder); color: var(--muted); font-style: italic; font-size: 12px; }
+
+  /* Note / task entries */
+  .entry {
+    background: var(--pill); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 10px 12px; margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .entry-meta { font-size: 10px; color: var(--muted); margin-bottom: 4px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .e-type {
+    display: inline-block; padding: 1px 6px; border-radius: 4px;
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;
+  }
+  .e-type-note { background: var(--pill); color: var(--slate); }
+  .e-type-task { background: var(--brand-soft); color: var(--brand); }
+  .e-type-workout { background: var(--body-soft); color: var(--body); }
+  .e-type-food { background: var(--good-soft); color: var(--good); }
+  .e-type-water { background: #dbeafe; color: #1e40af; }
+  .e-type-money { background: var(--money-soft); color: var(--money); }
+  .e-type-deadline { background: var(--warn-soft); color: var(--warn); }
+  .e-type-idea { background: #fef3c7; color: #b45309; }
+  .e-biz {
+    display: inline-block; padding: 1px 6px; border-radius: 4px;
+    background: #fff; color: var(--ink); border: 1px solid var(--line);
+    font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px;
+  }
+  .entry.done { opacity: .5; }
+  .entry.done .e-text { text-decoration: line-through; }
+  .entry-row { display: flex; gap: 8px; align-items: flex-start; }
+  .e-check {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 2px solid var(--line); background: #fff;
+    cursor: pointer; flex-shrink: 0; margin-top: 1px;
+    display: grid; place-items: center; font-size: 14px; color: transparent;
+  }
+  .entry.done .e-check { background: var(--good); border-color: var(--good); color: #fff; }
+  .empty { text-align: center; padding: 18px; color: var(--muted); font-size: 12px; font-style: italic; }
+
+  /* Agents */
+  .agents { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ag { background: var(--pill); border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-align: left; cursor: pointer; font-family: inherit; }
+  .ag.on { background: #fff; border-color: var(--brand-soft); }
+  .ag-icon { font-size: 18px; }
+  .ag-name { font-size: 12px; font-weight: 700; margin-top: 2px; }
+  .ag-sub { font-size: 9px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
+
+  /* FAB */
+  .fab {
+    position: fixed; bottom: calc(var(--safe-bot) + 80px); right: 18px;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--ink); color: #fff;
+    border: 0; font-size: 28px; font-weight: 300;
+    box-shadow: 0 12px 28px -8px rgba(15,23,42,.4);
+    cursor: pointer; z-index: 10; display: grid; place-items: center;
+  }
+  .fab:active { transform: scale(.96); }
+
+  /* Modal */
+  .modal-bg { position: fixed; inset: 0; background: rgba(15,23,42,.4); backdrop-filter: blur(4px); z-index: 20; opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .modal-bg.on { opacity: 1; pointer-events: auto; }
+  .modal {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--panel); border-radius: 24px 24px 0 0;
+    padding: 16px 18px calc(var(--safe-bot) + 18px);
+    z-index: 21; transform: translateY(100%); transition: transform .25s;
+    box-shadow: 0 -8px 32px rgba(0,0,0,.15);
+    max-height: 88vh; overflow-y: auto;
+  }
+  .modal.on { transform: translateY(0); }
+  .modal-grab { width: 36px; height: 4px; background: var(--line); border-radius: 999px; margin: 0 auto 12px; }
+  .modal h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
+  .modal-sub { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+  .modal-section-l { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin: 10px 0 6px; }
+  .modal textarea {
+    width: 100%; border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; font-size: 16px; font-family: inherit;
+    min-height: 80px; resize: none; outline: none; background: var(--pill);
+  }
+  .modal textarea:focus { border-color: var(--brand); background: #fff; }
+  .pill-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill {
+    padding: 7px 11px; font-size: 11px; font-weight: 700;
+    background: var(--pill); border: 1px solid var(--line);
+    border-radius: 999px; cursor: pointer; user-select: none;
+  }
+  .pill.on { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .pill-type.on { background: var(--ink); border-color: var(--ink); }
+  .modal-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; margin-top: 12px; }
+  .modal-btn { padding: 13px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; border: 0; font-family: inherit; }
+  .modal-btn.secondary { background: var(--pill); color: var(--slate); }
+  .modal-btn.primary { background: var(--ink); color: #fff; }
+
+  /* Nav */
+  .navbar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,.95); backdrop-filter: blur(20px);
+    border-top: 1px solid var(--line);
+    display: flex; padding: 8px 12px calc(8px + var(--safe-bot));
+    z-index: 5;
+  }
+  .nav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 6px; border: 0; background: transparent;
+    color: var(--muted); font-size: 10px; font-weight: 600; cursor: pointer;
+    font-family: inherit;
+  }
+  .nav-item.on { color: var(--brand); }
+  .nav-item .ico { font-size: 18px; }
+
+  .view { display: none; }
+  .view.on { display: block; }
+
+  /* Status */
+  .agent-status { display: none; margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: var(--brand-soft); color: var(--brand); font-size: 12px; }
+  .agent-status.show { display: block; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="top">
+  <div class="greet">
+    <span id="greet">Anchor.</span>
+    <small id="date"></small>
+  </div>
+  <div class="voice-mini">
+    <button class="vbtn" data-voice="ds" aria-label="Drill Sgt">🎯</button>
+    <button class="vbtn" data-voice="secretary" aria-label="Secretary">📋</button>
+    <button class="vbtn" data-voice="mom" aria-label="Mom">🫶</button>
+  </div>
+</div>
+
+<!-- =================== TODAY =================== -->
+<div class="view on" id="v-today">
+  <div class="voiceline" id="voiceline">
+    <div class="voice-tag" id="voice-tag">Bart · loading</div>
+    <div id="voice-body">Loading…</div>
+  </div>
+
+  <div class="fire">
+    <div class="fire-icon">🚨</div>
+    <div style="flex:1">
+      <div class="fire-label">Fire</div>
+      <div class="fire-title">Namecheap — top up funds</div>
+      <div class="fire-body">5 failed auto-renew attempts since May 21.</div>
+      <button class="fire-btn" onclick="window.open('https://ap.www.namecheap.com/Profile/Tools/AccountBalance','_blank')">Open Namecheap →</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>Today's One Thing</h2><span class="meta" id="focus-saved">·</span></div>
+    <div class="card-b">
+      <div class="focus-box" id="focus" contenteditable="true" spellcheck="true"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>$350/hr · Money Math</h2><span class="meta">Hormozi</span></div>
+    <div class="card-b">
+      <div class="m-grid">
+        <div class="m"><div class="m-k">Your floor</div><div class="m-v">$350/hr</div><div class="m-n">below this = delegate</div></div>
+        <div class="m"><div class="m-k">$1M/yr =</div><div class="m-v">$19.2k/wk</div><div class="m-n">at floor · 50 wks</div></div>
+        <div class="m"><div class="m-k">CYSM Founding 10</div><div class="m-v">$2,443/mo</div><div class="m-n">+ $6,979 cash · 7 left · 30 days</div></div>
+        <div class="m"><div class="m-k">Year-1 if 10 close</div><div class="m-v">$51,850</div><div class="m-n">highest leverage you've got</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>Businesses</h2><span class="meta">4</span></div>
+    <div class="card-b">
+      <div class="biz-tiles">
+        <div class="tile"><div class="tile-name">CanYouSeeMe.ai</div><span class="tile-tag t-launch">Lever</span><div class="tile-money">7 slots = $2,443 MRR</div></div>
+        <div class="tile"><div class="tile-name">JOïA Saunas</div><span class="tile-tag t-active">Active</span><div class="tile-money">$27.5k+/build</div></div>
+        <div class="tile"><div class="tile-name">RED Mtn Suites</div><span class="tile-tag t-active">Active</span><div class="tile-money">Bike season Jun 20</div></div>
+        <div class="tile"><div class="tile-name">WheresMyToque</div><span class="tile-tag t-warn">Decide</span><div class="tile-money">kill or rebuild</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>Recent Captures</h2><span class="meta" id="note-count">0</span></div>
+    <div class="card-b" id="notes-list"><div class="empty">No captures yet. Tap + to start.</div></div>
+  </div>
+</div>
+
+<!-- =================== BODY =================== -->
+<div class="view" id="v-body">
+  <div class="card">
+    <div class="card-h"><h2>Today · the body score</h2><span class="meta" id="body-date"></span></div>
+    <div class="card-b">
+      <div class="body-score">
+        <div class="bs"><div class="bs-icon">💧</div><div class="bs-v" id="bs-water">0</div><div class="bs-l">Water</div></div>
+        <div class="bs"><div class="bs-icon">🍽️</div><div class="bs-v" id="bs-meals">0</div><div class="bs-l">Meals</div></div>
+        <div class="bs"><div class="bs-icon">🏋️</div><div class="bs-v" id="bs-workout">—</div><div class="bs-l">Workout</div></div>
+        <div class="bs"><div class="bs-icon">😴</div><div class="bs-v" id="bs-sleep">—</div><div class="bs-l">Sleep</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>Quick log</h2><span class="meta">one tap</span></div>
+    <div class="card-b">
+      <div class="quick-row">
+        <button class="quick-btn" data-quick="water"><span class="quick-ico">💧</span><span class="quick-l">+Water</span></button>
+        <button class="quick-btn" data-quick="meal"><span class="quick-ico">🍽️</span><span class="quick-l">+Meal</span></button>
+        <button class="quick-btn" data-quick="workout"><span class="quick-ico">🏋️</span><span class="quick-l">Workout</span></button>
+        <button class="quick-btn" data-quick="sleep"><span class="quick-ico">😴</span><span class="quick-l">Sleep</span></button>
+      </div>
+      <div style="font-size:11px;color:var(--muted);text-align:center;font-style:italic;line-height:1.5">
+        Quick taps log a default. Need detail? Tap + at bottom right.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>Today's body log</h2><span class="meta" id="body-count">0</span></div>
+    <div class="card-b" id="body-list"><div class="empty">Nothing logged today.</div></div>
+  </div>
+</div>
+
+<!-- =================== TASKS =================== -->
+<div class="view" id="v-tasks">
+  <div class="card">
+    <div class="card-h"><h2>Open tasks</h2><span class="meta" id="task-count">0</span></div>
+    <div class="card-b" id="tasks-list"><div class="empty">No open tasks. Tap + to add one.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>Upcoming deadlines</h2><span class="meta" id="deadline-count">0</span></div>
+    <div class="card-b" id="deadlines-list"><div class="empty">No deadlines saved.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><h2>Goals · running board</h2><span class="meta" id="goals-saved">·</span></div>
+    <div class="card-b">
+      <div class="goal">
+        <div class="goal-k">Monthly · June</div>
+        <div class="goal-body" id="g-month" contenteditable="true" data-placeholder="What's true at month-end?"></div>
+      </div>
+      <div class="goal">
+        <div class="goal-k">Quarterly · Q3 2026</div>
+        <div class="goal-body" id="g-quarter" contenteditable="true" data-placeholder="2–3 biggest moves this quarter."></div>
+      </div>
+      <div class="goal">
+        <div class="goal-k">Yearly · 2026</div>
+        <div class="goal-body" id="g-year" contenteditable="true" data-placeholder="The one or two big ones."></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:10px;font-style:italic">
+        Stuck? Fire <b>The Interrogator</b> on Agents.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== AGENTS =================== -->
+<div class="view" id="v-agents">
+  <div class="card">
+    <div class="card-h"><h2>Bart's agents</h2><span class="meta">9 deployed</span></div>
+    <div class="card-b">
+      <div class="agents">
+        <button class="ag on" data-task="quarterback"><div class="ag-icon">🏈</div><div class="ag-name">Quarterback</div><div class="ag-sub">Daily 7am · brief</div></button>
+        <button class="ag on" data-task="hustler"><div class="ag-icon">💰</div><div class="ag-name">Hustler</div><div class="ag-sub">M-F 9am · money</div></button>
+        <button class="ag on" data-task="scoreboard"><div class="ag-icon">📊</div><div class="ag-name">Scoreboard</div><div class="ag-sub">Sun 6pm · week</div></button>
+        <button class="ag on" data-task="reckoning"><div class="ag-icon">⚖️</div><div class="ag-name">Reckoning</div><div class="ag-sub">Month-end · deep</div></button>
+        <button class="ag" data-task="interrogator"><div class="ag-icon">🎯</div><div class="ag-name">Interrogator</div><div class="ag-sub">On demand · goals</div></button>
+        <button class="ag" data-task="closer"><div class="ag-icon">📞</div><div class="ag-name">Closer</div><div class="ag-sub">On demand · CYSM</div></button>
+        <button class="ag" data-task="mercenary"><div class="ag-icon">🗡️</div><div class="ag-name">Mercenary</div><div class="ag-sub">On demand · subs</div></button>
+        <button class="ag" data-task="scout"><div class="ag-icon">🔭</div><div class="ag-name">Scout</div><div class="ag-sub">On demand · hires</div></button>
+        <button class="ag" data-task="synthesizer"><div class="ag-icon">🧠</div><div class="ag-name">Synthesizer</div><div class="ag-sub">On demand · scroll</div></button>
+      </div>
+      <div id="agent-status" class="agent-status"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAB -->
+<button class="fab" id="fab" aria-label="Capture">+</button>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg"></div>
+<div class="modal" id="modal">
+  <div class="modal-grab"></div>
+  <h3 id="modal-title">What just happened?</h3>
+  <div class="modal-sub">Bart files it. You move on.</div>
+
+  <div class="modal-section-l">Type</div>
+  <div class="pill-row" id="type-pills">
+    <div class="pill pill-type on" data-type="note">📝 Note</div>
+    <div class="pill pill-type" data-type="task">✅ Task</div>
+    <div class="pill pill-type" data-type="workout">🏋️ Workout</div>
+    <div class="pill pill-type" data-type="food">🍽️ Food</div>
+    <div class="pill pill-type" data-type="water">💧 Water</div>
+    <div class="pill pill-type" data-type="sleep">😴 Sleep</div>
+    <div class="pill pill-type" data-type="money">💰 Money</div>
+    <div class="pill pill-type" data-type="deadline">⏰ Deadline</div>
+    <div class="pill pill-type" data-type="idea">💡 Idea</div>
+  </div>
+
+  <div class="modal-section-l">For</div>
+  <div class="pill-row" id="biz-pills">
+    <div class="pill" data-biz="CYSM">CYSM</div>
+    <div class="pill" data-biz="JOïA">JOïA</div>
+    <div class="pill" data-biz="RMS">RMS</div>
+    <div class="pill" data-biz="Toque">Toque</div>
+    <div class="pill on" data-biz="Personal">Personal</div>
+  </div>
+
+  <div class="modal-section-l">Detail</div>
+  <textarea id="modal-text" placeholder="Talk or type. e.g. '45 min run' / 'call Sarah by Fri' / 'paid $29 Mailchimp' / 'eggs + toast'"></textarea>
+
+  <div class="modal-actions">
+    <button class="modal-btn secondary" id="modal-cancel">Cancel</button>
+    <button class="modal-btn primary" id="modal-save">Save</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="navbar">
+  <button class="nav-item on" data-view="today"><div class="ico">🎯</div>Today</button>
+  <button class="nav-item" data-view="body"><div class="ico">🫀</div>Body</button>
+  <button class="nav-item" data-view="tasks"><div class="ico">✅</div>Tasks</button>
+  <button class="nav-item" data-view="agents"><div class="ico">🤖</div>Agents</button>
+</nav>
+
+</div>
+
+<script>
+(function() {
+  // ===== Date + greet =====
+  const now = new Date();
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('date').textContent = `${days[now.getDay()]}, ${mons[now.getMonth()]} ${now.getDate()}`;
+  document.getElementById('body-date').textContent = `${mons[now.getMonth()]} ${now.getDate()}`;
+  const hr = now.getHours();
+  const part = hr < 12 ? 'morning' : hr < 17 ? 'afternoon' : 'evening';
+  document.getElementById('greet').textContent = `Good ${part}, Pepe.`;
+
+  // ===== Bart's voice =====
+  const voices = {
+    ds: { tag: 'Bart · Drill Sgt mode', body: `<b>Pepe.</b> Up. Namecheap still bleeding — fix in 90s. <b>$2,443/mo on the table</b>, 7 founder slots × 30 days. What did you ship yesterday? Honest. <b>ONE play before lunch. Type it. I'm checking at 5.</b>` },
+    secretary: { tag: 'Bart · Secretary mode', body: `Bart, mid-day. 4 ventures stable, CYSM is the lever. Namecheap fire still open. <b>What did you ship this morning?</b> Tell me — I'll log it and tee up the afternoon.` },
+    mom: { tag: 'Bart · Mom mode', body: `Hey Pepe — Bart. Sit a minute. <b>Honest first:</b> did you eat? Move 10? Drink water? Tomorrow's brief is set for 7. <b>You did more than your brain is giving you credit for.</b>` }
+  };
+  function autoVoice() {
+    const h = new Date().getHours();
+    if (h < 12) return 'ds';
+    if (h < 17) return 'secretary';
+    return 'mom';
+  }
+  function setVoice(v) {
+    document.getElementById('voice-tag').textContent = voices[v].tag;
+    document.getElementById('voice-body').innerHTML = voices[v].body;
+    document.querySelectorAll('.vbtn').forEach(b => b.classList.toggle('on', b.dataset.voice === v));
+  }
+  document.querySelectorAll('.vbtn').forEach(b => b.addEventListener('click', () => {
+    setVoice(b.dataset.voice);
+    sessionStorage.setItem('a-voice', b.dataset.voice);
+  }));
+  setVoice(sessionStorage.getItem('a-voice') || autoVoice());
+
+  // ===== Persistence helpers =====
+  function bindSave(elId, key, savedPillId) {
+    const el = document.getElementById(elId);
+    const pill = savedPillId ? document.getElementById(savedPillId) : null;
+    const stored = localStorage.getItem(key);
+    if (stored) el.textContent = stored;
+    let t;
+    el.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        localStorage.setItem(key, el.textContent.trim());
+        if (pill) { pill.textContent = 'saved'; setTimeout(() => pill.textContent = '·', 1200); }
+      }, 350);
+    });
+  }
+  bindSave('focus', 'a-focus', 'focus-saved');
+  bindSave('g-month', 'a-g-month', 'goals-saved');
+  bindSave('g-quarter', 'a-g-quarter', 'goals-saved');
+  bindSave('g-year', 'a-g-year', 'goals-saved');
+
+  // ===== Nav =====
+  document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(x => x.classList.toggle('on', x === n));
+    document.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.id === 'v-' + n.dataset.view));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+
+  // ===== Captures (notes, tasks, body, etc) =====
+  function loadEntries() { return JSON.parse(localStorage.getItem('a-entries') || '[]'); }
+  function saveEntries(arr) { localStorage.setItem('a-entries', JSON.stringify(arr)); }
+  function todayKey() { const d = new Date(); return d.toISOString().slice(0,10); }
+  function isToday(ts) { return new Date(ts).toISOString().slice(0,10) === todayKey(); }
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function fmtTime(ts) {
+    const d = new Date(ts);
+    return d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+  }
+  function fmtDate(ts) {
+    const d = new Date(ts);
+    return `${mons[d.getMonth()]} ${d.getDate()}`;
+  }
+
+  function entryHtml(e, opts = {}) {
+    const typeEmoji = {note:'📝',task:'✅',workout:'🏋️',food:'🍽️',water:'💧',sleep:'😴',money:'💰',deadline:'⏰',idea:'💡'}[e.type] || '📝';
+    const typeLabel = e.type[0].toUpperCase() + e.type.slice(1);
+    const checkBtn = e.type === 'task' ? `<button class="e-check" data-id="${e.id}" aria-label="Mark done">✓</button>` : '';
+    const doneClass = e.done ? ' done' : '';
+    const time = isToday(e.t) ? fmtTime(e.t) : fmtDate(e.t);
+    return `<div class="entry${doneClass}" data-id="${e.id}">
+      <div class="entry-row">
+        ${checkBtn}
+        <div style="flex:1">
+          <div class="entry-meta">
+            <span class="e-type e-type-${e.type}">${typeEmoji} ${typeLabel}</span>
+            ${e.biz ? `<span class="e-biz">${e.biz}</span>` : ''}
+            <span>${time}</span>
+          </div>
+          <div class="e-text">${escapeHtml(e.text)}</div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function renderAll() {
+    const entries = loadEntries();
+    // RECENT (Today tab) — last 6, any type, any day
+    const recent = entries.slice().reverse().slice(0, 6);
+    const recentEl = document.getElementById('notes-list');
+    document.getElementById('note-count').textContent = entries.length;
+    recentEl.innerHTML = recent.length ? recent.map(e => entryHtml(e)).join('') : '<div class="empty">No captures yet. Tap + to start.</div>';
+
+    // BODY tab — today's body entries
+    const bodyTypes = ['workout','food','water','sleep'];
+    const bodyToday = entries.filter(e => bodyTypes.includes(e.type) && isToday(e.t));
+    const bodyEl = document.getElementById('body-list');
+    document.getElementById('body-count').textContent = bodyToday.length;
+    bodyEl.innerHTML = bodyToday.length ? bodyToday.slice().reverse().map(e => entryHtml(e)).join('') : '<div class="empty">Nothing logged today.</div>';
+
+    // BODY SCORE
+    document.getElementById('bs-water').textContent = bodyToday.filter(e => e.type === 'water').length;
+    document.getElementById('bs-meals').textContent = bodyToday.filter(e => e.type === 'food').length;
+    document.getElementById('bs-workout').textContent = bodyToday.filter(e => e.type === 'workout').length > 0 ? '✓' : '—';
+    document.getElementById('bs-sleep').textContent = bodyToday.filter(e => e.type === 'sleep').length > 0 ? '✓' : '—';
+
+    // TASKS tab — open tasks
+    const tasks = entries.filter(e => e.type === 'task' && !e.done);
+    const tasksEl = document.getElementById('tasks-list');
+    document.getElementById('task-count').textContent = tasks.length;
+    tasksEl.innerHTML = tasks.length ? tasks.slice().reverse().map(e => entryHtml(e)).join('') : '<div class="empty">No open tasks. Tap + to add one.</div>';
+
+    // DEADLINES
+    const deadlines = entries.filter(e => e.type === 'deadline');
+    const deadlinesEl = document.getElementById('deadlines-list');
+    document.getElementById('deadline-count').textContent = deadlines.length;
+    deadlinesEl.innerHTML = deadlines.length ? deadlines.slice().reverse().map(e => entryHtml(e)).join('') : '<div class="empty">No deadlines saved.</div>';
+
+    // Wire up task checkmarks
+    document.querySelectorAll('.e-check').forEach(c => c.addEventListener('click', toggleTask));
+  }
+
+  function toggleTask(e) {
+    const id = e.currentTarget.dataset.id;
+    const entries = loadEntries();
+    const ent = entries.find(x => x.id === id);
+    if (ent) {
+      ent.done = !ent.done;
+      ent.doneAt = ent.done ? Date.now() : null;
+      saveEntries(entries);
+      renderAll();
+    }
+  }
+
+  // ===== Modal =====
+  const fab = document.getElementById('fab');
+  const bg = document.getElementById('modal-bg');
+  const mod = document.getElementById('modal');
+  const txt = document.getElementById('modal-text');
+  let selectedType = 'note';
+  let selectedBiz = 'Personal';
+
+  document.querySelectorAll('.pill-type').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('.pill-type').forEach(x => x.classList.toggle('on', x === p));
+    selectedType = p.dataset.type;
+  }));
+  document.querySelectorAll('#biz-pills .pill').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('#biz-pills .pill').forEach(x => x.classList.toggle('on', x === p));
+    selectedBiz = p.dataset.biz;
+  }));
+
+  function openModal(presetType, presetText) {
+    if (presetType) {
+      selectedType = presetType;
+      document.querySelectorAll('.pill-type').forEach(x => x.classList.toggle('on', x.dataset.type === presetType));
+    }
+    if (presetText) txt.value = presetText;
+    bg.classList.add('on'); mod.classList.add('on');
+    setTimeout(() => txt.focus(), 250);
+  }
+  function closeModal() {
+    bg.classList.remove('on'); mod.classList.remove('on');
+    txt.value = '';
+    selectedType = 'note';
+    selectedBiz = 'Personal';
+    document.querySelectorAll('.pill-type').forEach(x => x.classList.toggle('on', x.dataset.type === 'note'));
+    document.querySelectorAll('#biz-pills .pill').forEach(x => x.classList.toggle('on', x.dataset.biz === 'Personal'));
+  }
+  fab.addEventListener('click', () => openModal());
+  bg.addEventListener('click', closeModal);
+  document.getElementById('modal-cancel').addEventListener('click', closeModal);
+  document.getElementById('modal-save').addEventListener('click', saveEntry);
+
+  function saveEntry() {
+    const text = txt.value.trim();
+    if (!text && !['water','sleep','workout'].includes(selectedType)) { closeModal(); return; }
+    const entries = loadEntries();
+    entries.push({
+      id: String(Date.now()) + Math.random().toString(36).slice(2,6),
+      t: Date.now(),
+      text: text || `(${selectedType} logged)`,
+      type: selectedType,
+      biz: selectedBiz,
+      done: false
+    });
+    saveEntries(entries);
+    closeModal();
+    renderAll();
+  }
+
+  // ===== Quick log buttons (Body tab) =====
+  document.querySelectorAll('.quick-btn').forEach(b => b.addEventListener('click', () => {
+    const q = b.dataset.quick;
+    const map = { water: { type: 'water', text: '1 glass' }, meal: { type: 'food', text: '' }, workout: { type: 'workout', text: '' }, sleep: { type: 'sleep', text: '' } };
+    const m = map[q];
+    if (q === 'water') {
+      // one-tap water log, no modal
+      const entries = loadEntries();
+      entries.push({ id: String(Date.now()) + Math.random().toString(36).slice(2,6), t: Date.now(), text: '1 glass', type: 'water', biz: 'Personal', done: false });
+      saveEntries(entries);
+      renderAll();
+    } else {
+      openModal(m.type, m.text);
+    }
+  }));
+
+  // ===== Agents =====
+  const inCowork = typeof window.cowork !== 'undefined' && window.cowork.runScheduledTask;
+  const taskIds = {
+    quarterback: 'quarterback-morning-brief',
+    hustler: 'hustler-money-hunter',
+    scoreboard: 'scoreboard-weekly-review',
+    reckoning: 'reckoning-monthly-report',
+    interrogator: 'interrogator-goal-setter',
+    mercenary: 'mercenary-sub-killer',
+    closer: 'closer-cysm-sales',
+    scout: 'scout-hire-recommender',
+    synthesizer: 'synthesizer-content-capture'
+  };
+  document.querySelectorAll('.ag').forEach(b => b.addEventListener('click', async () => {
+    const status = document.getElementById('agent-status');
+    const key = b.dataset.task;
+    if (!inCowork) {
+      status.classList.add('show');
+      status.textContent = `Open Anchor in Cowork to dispatch agents. Phone version = capture + view.`;
+      return;
+    }
+    status.classList.add('show');
+    status.textContent = 'Dispatching…';
+    try {
+      await window.cowork.runScheduledTask(taskIds[key]);
+      status.textContent = `✓ ${b.querySelector('.ag-name').textContent} dispatched. Check chat.`;
+    } catch (err) {
+      status.textContent = `Failed: ${err.message || 'unknown'}`;
+    }
+  }));
+
+  // First render
+  renderAll();
+})();
+</script>
+</body>
+</html>
