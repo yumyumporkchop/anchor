@@ -1,0 +1,37 @@
+{
+  "updated": "2026-06-17",
+  "followups": [
+    { "date": "2026-06-18", "who": "Bow Cycle (Jack)", "act": "Email re: fall RED road-trip — dates, # riders, comp vs. theirs", "ch": "Email" },
+    { "date": "2026-06-18", "who": "Freedom Bike Shop (Josh)", "act": "Confirm shop-trip weekend; bike park opens Jun 20", "ch": "Email" },
+    { "date": "2026-06-18", "who": "Send 5 staged replies", "act": "Establishment, Cloudside, Dancing Bear, Squamish Inn, Whistler Lodge (attach flyer)", "ch": "Email" },
+    { "date": "2026-06-18", "who": "Gerick / Cycology / Sacred Ride", "act": "Call or DM — pitch guest rental/service perk", "ch": "Call" },
+    { "date": "2026-06-19", "who": "Mt. Begbie / Finley's / Canmore Brewing", "act": "Call to schedule", "ch": "Phone" },
+    { "date": "2026-06-20", "who": "B&T's / Hooper's", "act": "Confirm giveaway perk + logo/IG handle", "ch": "Email" },
+    { "date": "2026-06-22", "who": "Mercantile, Revolution, Bright Eye, La Ruelle, Gabriella's, Adventure Hotel", "act": "Follow up if no reply", "ch": "Email" },
+    { "date": "2026-06-24", "who": "Lake Breeze, District Wine, Beer Farmers, Tofino", "act": "Follow up BC-network sends", "ch": "Email" },
+    { "date": "2026-06-29", "who": "Wild Life Distillery (Martine)", "act": "Back from vacation — lock perk + content shoot date", "ch": "Email" }
+  ],
+  "pipeline": [
+    { "name": "Freedom Bike Shop", "town": "Nelson", "status": "hot", "next": "Confirm weekend + open date" },
+    { "name": "Wild Life Distillery", "town": "Canmore", "status": "hot", "next": "Reconnect Jun 29 — perk + shoot" },
+    { "name": "Rebound Cycle", "town": "Canmore", "status": "hot", "next": "Get logo/link + perk wording" },
+    { "name": "Bow Cycle", "town": "Calgary", "status": "hot", "next": "Firm up fall road trip" },
+    { "name": "B&T's Hard Knock Cafe", "town": "Rossland", "status": "warm", "next": "Confirm giveaway perk + logo" },
+    { "name": "Hooper's Bakery", "town": "Rossland", "status": "warm", "next": "Confirm giveaway perk + logo" },
+    { "name": "Revolution Cycles", "town": "Rossland", "status": "warm", "next": "Await reply (co-host + guide)" },
+    { "name": "Mountain Mercantile", "town": "Canmore", "status": "warm", "next": "Sent socials; await perk" },
+    { "name": "Mt. Begbie Brewing", "town": "Revelstoke", "status": "warm", "next": "Schedule call" },
+    { "name": "Finley's Bar & Grill", "town": "Nelson", "status": "warm", "next": "Schedule call" },
+    { "name": "Canmore Brewing", "town": "Canmore", "status": "warm", "next": "Schedule call" },
+    { "name": "Bright Eye Brewing", "town": "Nelson", "status": "await", "next": "Resent — follow up Jun 22" },
+    { "name": "La Ruelle Bakery", "town": "Nelson", "status": "await", "next": "Resent — follow up Jun 22" },
+    { "name": "Gabriella's", "town": "Rossland", "status": "await", "next": "Resent — follow up Jun 22" },
+    { "name": "Adventure Hotel / Louie's", "town": "Nelson", "status": "await", "next": "Resent — follow up Jun 22" },
+    { "name": "Lake Breeze / District / Beer Farmers / Tofino", "town": "BC", "status": "await", "next": "BC-network — follow up Jun 24" },
+    { "name": "Establishment Brewing", "town": "Calgary", "status": "warm", "next": "Review draft (cross-promo clarified)" },
+    { "name": "Cloudside / Dancing Bear / Squamish / Whistler Lodge", "town": "BC", "status": "ref", "next": "Reciprocal referrals — review drafts" },
+    { "name": "Gerick Cycle", "town": "Trail/Nelson", "status": "contact", "next": "Call/DM — no public email" },
+    { "name": "Cycology Bikes", "town": "Castlegar", "status": "contact", "next": "Call/DM — no public email" },
+    { "name": "The Sacred Ride", "town": "Nelson", "status": "contact", "next": "Call/DM — no public email" }
+  ]
+}
