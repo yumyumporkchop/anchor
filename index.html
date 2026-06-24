@@ -26,6 +26,7 @@
     --brand: #0f4c75;
     --brand-soft: #e0eef7;
     --accent: #b8763e;
+    --accent-soft: #f5e6d3;
     --gold: #fbbf24;
     --good: #16a34a;
     --good-soft: #dcfce7;
@@ -72,22 +73,95 @@
     color: var(--brand); text-transform: uppercase; margin-bottom: 6px;
   }
 
-  /* Fire */
-  .fire {
+  /* Tell Bart command line */
+  .tellbart {
+    background: linear-gradient(135deg, #0f4c75, #1a6ba3);
+    border-radius: 14px; padding: 14px; margin-bottom: 12px;
+    color: #fff; box-shadow: 0 6px 18px -8px rgba(15,76,117,.5);
+  }
+  .tellbart-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .tellbart-l { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; opacity: .85; }
+  .tellbart-biz { display: flex; gap: 4px; }
+  .tb-pill {
+    padding: 3px 8px; font-size: 9px; font-weight: 700; border-radius: 999px;
+    background: rgba(255,255,255,.15); color: #fff; cursor: pointer; user-select: none;
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  .tb-pill.on { background: #fff; color: var(--brand); }
+  .tellbart-input {
+    width: 100%; background: rgba(255,255,255,.95); color: var(--ink);
+    border: 0; border-radius: 10px; padding: 12px 14px; font-size: 14px;
+    font-family: inherit; outline: none; margin-bottom: 8px;
+  }
+  .tellbart-input::placeholder { color: var(--muted); font-style: italic; }
+  .tellbart-btn {
+    width: 100%; background: var(--accent); color: #fff;
+    border: 0; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 700;
+    cursor: pointer; font-family: inherit;
+  }
+  .tellbart-btn:disabled { opacity: .5; cursor: not-allowed; }
+  .tellbart-status {
+    display: none; margin-top: 8px; padding: 8px 10px; border-radius: 8px;
+    background: rgba(255,255,255,.15); font-size: 11px; color: #fff;
+  }
+  .tellbart-status.show { display: block; }
+
+  /* Extract Alpha card */
+  .alpha-input {
+    width: 100%; background: var(--pill); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 12px; font-size: 13px; font-family: inherit; outline: none;
+    margin-bottom: 8px;
+  }
+  .alpha-input:focus { border-color: var(--accent); background: #fff; }
+  .alpha-btn {
+    width: 100%; background: var(--accent); color: #fff;
+    border: 0; padding: 11px; border-radius: 10px; font-size: 13px; font-weight: 700;
+    cursor: pointer; font-family: inherit;
+  }
+  .alpha-btn:disabled { opacity: .5; cursor: not-allowed; }
+  .alpha-status {
+    display: none; margin-top: 8px; padding: 8px 10px; border-radius: 8px;
+    background: var(--accent-soft); color: var(--accent); font-size: 11px;
+  }
+  .alpha-status.show { display: block; }
+
+  /* Fires stacked */
+  .fire-item {
     background: linear-gradient(135deg, #fff7ed, #fee2e2);
-    border: 1px solid #fda4af; border-radius: 14px;
-    padding: 14px; margin-bottom: 12px;
-    display: flex; gap: 12px; align-items: flex-start;
+    border: 1px solid #fda4af; border-radius: 12px;
+    padding: 12px; margin-bottom: 8px;
   }
-  .fire-icon { font-size: 22px; line-height: 1; }
-  .fire-label { font-size: 9px; font-weight: 800; letter-spacing: 1px; color: var(--bad); text-transform: uppercase; }
-  .fire-title { font-size: 14px; font-weight: 700; margin-top: 2px; }
-  .fire-body { font-size: 12px; color: var(--slate); margin-top: 4px; line-height: 1.45; }
-  .fire-btn {
-    background: var(--bad); color: #fff; border: 0; padding: 10px 14px;
-    border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer;
-    margin-top: 8px; font-family: inherit; width: 100%;
+  .fire-item-h { display: flex; gap: 8px; align-items: flex-start; }
+  .fire-rank {
+    background: var(--bad); color: #fff; min-width: 22px; height: 22px;
+    border-radius: 50%; display: grid; place-items: center;
+    font-size: 11px; font-weight: 800; flex-shrink: 0;
   }
+  .fire-item-title { font-size: 13px; font-weight: 700; line-height: 1.3; }
+  .fire-item-body { font-size: 11px; color: var(--slate); margin-top: 3px; line-height: 1.4; }
+  .fire-item-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .fire-link-btn, .fire-done-btn {
+    border: 0; padding: 8px 10px; border-radius: 8px;
+    font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit;
+  }
+  .fire-link-btn { background: var(--bad); color: #fff; }
+  .fire-done-btn { background: #fff; color: var(--slate); border: 1px solid var(--line); }
+
+  /* Wide Angle stats */
+  .wa-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .wa {
+    background: var(--pill); border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .wa-k { font-size: 9px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .8px; }
+  .wa-v { font-size: 18px; font-weight: 800; color: var(--brand); margin-top: 2px; }
+  .wa-n { font-size: 10px; color: var(--slate); margin-top: 2px; }
+  .wa-refresh {
+    display: inline-block; font-size: 9px; color: var(--muted); cursor: pointer;
+    background: transparent; border: 0; padding: 0; font-family: inherit;
+  }
+  .wa-refresh:hover { color: var(--brand); }
 
   /* Card */
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
@@ -187,37 +261,54 @@
 
   /* Agents */
   .agents { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .ag { background: var(--pill); border: 1px solid var(--line); border-radius: 10px; padding: 10px; text-align: left; cursor: pointer; font-family: inherit; }
+  .ag {
+    background: var(--pill); border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px; text-align: left; cursor: pointer; font-family: inherit;
+    position: relative;
+  }
   .ag.on { background: #fff; border-color: var(--brand-soft); }
+  .ag:active { background: var(--brand-soft); }
   .ag-icon { font-size: 18px; }
   .ag-name { font-size: 12px; font-weight: 700; margin-top: 2px; }
   .ag-sub { font-size: 9px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
-
-  /* Partners (added) */
-  .p-row { display: flex; gap: 10px; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--line-soft); }
-  .p-row:last-child { border-bottom: none; }
-  .p-row.done .p-who, .p-row.done .p-act { opacity: .45; text-decoration: line-through; }
-  .p-check {
-    width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--line); background: #fff;
-    cursor: pointer; flex-shrink: 0; margin-top: 1px; display: grid; place-items: center; font-size: 14px; color: transparent; font-family: inherit;
+  .ag-status-pill {
+    position: absolute; top: 6px; right: 6px; font-size: 8px; font-weight: 800;
+    padding: 2px 5px; border-radius: 4px; text-transform: uppercase; letter-spacing: .3px;
+    display: none;
   }
-  .p-row.done .p-check { background: var(--good); border-color: var(--good); color: #fff; }
-  .p-date { font-size: 10px; color: var(--muted); font-weight: 700; min-width: 42px; margin-top: 2px; }
-  .p-who { font-size: 13px; font-weight: 700; }
-  .p-act { font-size: 12px; color: var(--slate); margin-top: 1px; line-height: 1.4; }
-  .p-chip { font-size: 9px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase; padding: 3px 7px; border-radius: 999px; white-space: nowrap; align-self: center; }
-  .p-Email { background: #dbeafe; color: #1e40af; }
-  .p-Phone { background: var(--warn-soft); color: var(--warn); }
-  .p-Call { background: var(--brand-soft); color: var(--brand); }
-  .p-tile { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line-soft); }
-  .p-tile:last-child { border-bottom: none; }
-  .p-st { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
-  .st-hot { background: var(--good-soft); color: var(--good); }
-  .st-warm { background: var(--warn-soft); color: var(--warn); }
-  .st-await { background: #dbeafe; color: #1e40af; }
-  .st-ref { background: var(--line); color: var(--slate); }
-  .st-contact { background: #fef3c7; color: #b45309; }
-  .p-foot { text-align: center; font-size: 10px; color: var(--muted); font-style: italic; margin-top: 4px; }
+  .ag-status-pill.show { display: inline-block; }
+  .ag-status-pill.running { background: var(--brand-soft); color: var(--brand); }
+  .ag-status-pill.done { background: var(--good-soft); color: var(--good); }
+  .ag-status-pill.failed { background: var(--bad-soft); color: var(--bad); }
+  .ag-status-pill.blocked { background: var(--warn-soft); color: var(--warn); }
+
+  /* Commands log */
+  .cmd-item {
+    background: var(--pill); border: 1px solid var(--line-soft);
+    border-radius: 10px; padding: 10px 12px; margin-bottom: 6px;
+    font-size: 12px; cursor: pointer;
+  }
+  .cmd-meta { font-size: 10px; color: var(--muted); margin-bottom: 4px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .cmd-agent {
+    display: inline-block; padding: 1px 6px; border-radius: 4px;
+    font-size: 9px; font-weight: 700; background: var(--brand-soft); color: var(--brand);
+    text-transform: uppercase; letter-spacing: .3px;
+  }
+  .cmd-goal { color: var(--ink); line-height: 1.4; }
+  .cmd-result {
+    display: none; margin-top: 8px; padding: 8px 10px;
+    background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    font-size: 11px; color: var(--slate); line-height: 1.45;
+  }
+  .cmd-item.expanded .cmd-result { display: block; }
+  .status-pill {
+    display: inline-block; font-size: 9px; font-weight: 800; padding: 2px 6px;
+    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .status-pill.done { background: var(--good-soft); color: var(--good); }
+  .status-pill.running { background: var(--brand-soft); color: var(--brand); }
+  .status-pill.failed { background: var(--bad-soft); color: var(--bad); }
+  .status-pill.blocked { background: var(--warn-soft); color: var(--warn); }
 
   /* FAB */
   .fab {
@@ -270,12 +361,12 @@
     position: fixed; bottom: 0; left: 0; right: 0;
     background: rgba(255,255,255,.95); backdrop-filter: blur(20px);
     border-top: 1px solid var(--line);
-    display: flex; padding: 8px 8px calc(8px + var(--safe-bot));
+    display: flex; padding: 8px 12px calc(8px + var(--safe-bot));
     z-index: 5;
   }
   .nav-item {
     flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
-    padding: 6px 2px; border: 0; background: transparent;
+    padding: 6px; border: 0; background: transparent;
     color: var(--muted); font-size: 10px; font-weight: 600; cursor: pointer;
     font-family: inherit;
   }
@@ -285,9 +376,6 @@
   .view { display: none; }
   .view.on { display: block; }
 
-  /* Status */
-  .agent-status { display: none; margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: var(--brand-soft); color: var(--brand); font-size: 12px; }
-  .agent-status.show { display: block; }
 </style>
 </head>
 <body>
@@ -312,13 +400,60 @@
     <div id="voice-body">Loading…</div>
   </div>
 
-  <div class="fire">
-    <div class="fire-icon">🚨</div>
-    <div style="flex:1">
-      <div class="fire-label">Fire</div>
-      <div class="fire-title">Namecheap — top up funds</div>
-      <div class="fire-body">5 failed auto-renew attempts since May 21.</div>
-      <button class="fire-btn" onclick="window.open('https://ap.www.namecheap.com/Profile/Tools/AccountBalance','_blank')">Open Namecheap →</button>
+  <!-- ===== TELL BART command line ===== -->
+  <div class="tellbart">
+    <div class="tellbart-h">
+      <div class="tellbart-l">💬 Tell Bart</div>
+      <div class="tellbart-biz" id="tb-biz-pills">
+        <div class="tb-pill on" data-tbbiz="CYSM">CYSM</div>
+        <div class="tb-pill" data-tbbiz="JOïA">JOïA</div>
+        <div class="tb-pill" data-tbbiz="RMS">RMS</div>
+        <div class="tb-pill" data-tbbiz="Toque">Toque</div>
+        <div class="tb-pill" data-tbbiz="Personal">Personal</div>
+      </div>
+    </div>
+    <input type="text" class="tellbart-input" id="tb-input" placeholder="Give Bart a goal — he routes to the right specialist…">
+    <button class="tellbart-btn" id="tb-dispatch">Dispatch</button>
+    <div class="tellbart-status" id="tb-status"></div>
+  </div>
+
+  <!-- ===== EXTRACT ALPHA card ===== -->
+  <div class="card">
+    <div class="card-h"><h2>🔍 Extract Alpha</h2><span class="meta">→ Synthesizer</span></div>
+    <div class="card-b">
+      <input type="url" class="alpha-input" id="alpha-input" placeholder="Paste TikTok / YouTube / IG / Article URL…">
+      <div class="modal-section-l" style="margin:6px 0 6px">For</div>
+      <div class="pill-row" id="alpha-biz-pills">
+        <div class="pill on" data-abiz="CYSM">CYSM</div>
+        <div class="pill" data-abiz="JOïA">JOïA</div>
+        <div class="pill" data-abiz="RMS">RMS</div>
+        <div class="pill" data-abiz="Toque">Toque</div>
+        <div class="pill" data-abiz="Personal">Personal</div>
+      </div>
+      <div style="height:10px"></div>
+      <button class="alpha-btn" id="alpha-extract">Extract Alpha</button>
+      <div class="alpha-status" id="alpha-status"></div>
+    </div>
+  </div>
+
+  <!-- ===== FIRES stacked ===== -->
+  <div class="card">
+    <div class="card-h"><h2>🚨 Fires</h2><span class="meta" id="fire-count">5 open</span></div>
+    <div class="card-b" id="fires-list"></div>
+  </div>
+
+  <!-- ===== WIDE ANGLE stats ===== -->
+  <div class="card">
+    <div class="card-h"><h2>🌐 Wide Angle</h2><button class="wa-refresh" id="wa-refresh">↻ refresh</button></div>
+    <div class="card-b">
+      <div class="wa-grid">
+        <div class="wa"><div class="wa-k">Sent today</div><div class="wa-v" id="wa-today">—</div><div class="wa-n" id="wa-today-n">target 100</div></div>
+        <div class="wa"><div class="wa-k">Sent this week</div><div class="wa-v" id="wa-week">—</div><div class="wa-n">7-day rolling</div></div>
+        <div class="wa"><div class="wa-k">Hot leads</div><div class="wa-v" id="wa-hot">—</div><div class="wa-n">awaiting close</div></div>
+        <div class="wa"><div class="wa-k">Replies pending</div><div class="wa-v" id="wa-replies">—</div><div class="wa-n">triage queue</div></div>
+        <div class="wa" style="grid-column:1/-1"><div class="wa-k">Founding pace</div><div class="wa-v" id="wa-pace">—</div><div class="wa-n" id="wa-pace-n">7 slots left · 30-day clock</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:center;margin-top:8px;font-style:italic" id="wa-updated">Tap refresh to load from cysm VPS</div>
     </div>
   </div>
 
@@ -428,44 +563,39 @@
   </div>
 </div>
 
-<!-- =================== PARTNERS =================== -->
-<div class="view" id="v-partners">
-  <div class="card">
-    <div class="card-h"><h2>🔥 Due today / overdue</h2><span class="meta" id="p-due-count">0</span></div>
-    <div class="card-b" id="p-due"><div class="empty">Loading…</div></div>
-  </div>
-
-  <div class="card">
-    <div class="card-h"><h2>Next 10 days</h2><span class="meta" id="p-up-count">0</span></div>
-    <div class="card-b" id="p-up"><div class="empty">Loading…</div></div>
-  </div>
-
-  <div class="card">
-    <div class="card-h"><h2>Pipeline</h2><span class="meta" id="p-pipe-count">0</span></div>
-    <div class="card-b" id="p-pipe"><div class="empty">Loading…</div></div>
-  </div>
-
-  <div class="p-foot" id="p-updated"></div>
-</div>
-
 <!-- =================== AGENTS =================== -->
 <div class="view" id="v-agents">
   <div class="card">
-    <div class="card-h"><h2>Bart's agents</h2><span class="meta">9 deployed</span></div>
+    <div class="card-h"><h2>🤖 Bart's agents</h2><span class="meta">11 deployed</span></div>
     <div class="card-b">
-      <div class="agents">
-        <button class="ag on" data-task="quarterback"><div class="ag-icon">🏈</div><div class="ag-name">Quarterback</div><div class="ag-sub">Daily 7am · brief</div></button>
-        <button class="ag on" data-task="hustler"><div class="ag-icon">💰</div><div class="ag-name">Hustler</div><div class="ag-sub">M-F 9am · money</div></button>
-        <button class="ag on" data-task="scoreboard"><div class="ag-icon">📊</div><div class="ag-name">Scoreboard</div><div class="ag-sub">Sun 6pm · week</div></button>
-        <button class="ag on" data-task="reckoning"><div class="ag-icon">⚖️</div><div class="ag-name">Reckoning</div><div class="ag-sub">Month-end · deep</div></button>
-        <button class="ag" data-task="interrogator"><div class="ag-icon">🎯</div><div class="ag-name">Interrogator</div><div class="ag-sub">On demand · goals</div></button>
-        <button class="ag" data-task="closer"><div class="ag-icon">📞</div><div class="ag-name">Closer</div><div class="ag-sub">On demand · CYSM</div></button>
-        <button class="ag" data-task="mercenary"><div class="ag-icon">🗡️</div><div class="ag-name">Mercenary</div><div class="ag-sub">On demand · subs</div></button>
-        <button class="ag" data-task="scout"><div class="ag-icon">🔭</div><div class="ag-name">Scout</div><div class="ag-sub">On demand · hires</div></button>
-        <button class="ag" data-task="synthesizer"><div class="ag-icon">🧠</div><div class="ag-name">Synthesizer</div><div class="ag-sub">On demand · scroll</div></button>
+      <div class="modal-section-l" style="margin:0 0 6px">Route to</div>
+      <div class="pill-row" id="ag-biz-pills">
+        <div class="pill on" data-agbiz="CYSM">CYSM</div>
+        <div class="pill" data-agbiz="JOïA">JOïA</div>
+        <div class="pill" data-agbiz="RMS">RMS</div>
+        <div class="pill" data-agbiz="Toque">Toque</div>
       </div>
-      <div id="agent-status" class="agent-status"></div>
+      <div style="height:10px"></div>
+      <div class="agents">
+        <button class="ag on" data-task="quarterback"><span class="ag-status-pill"></span><div class="ag-icon">🏈</div><div class="ag-name">Quarterback</div><div class="ag-sub">Daily 7am · brief</div></button>
+        <button class="ag on" data-task="hustler"><span class="ag-status-pill"></span><div class="ag-icon">💰</div><div class="ag-name">Hustler</div><div class="ag-sub">M-F 9am · money</div></button>
+        <button class="ag on" data-task="scoreboard"><span class="ag-status-pill"></span><div class="ag-icon">📊</div><div class="ag-name">Scoreboard</div><div class="ag-sub">Sun 6pm · week</div></button>
+        <button class="ag on" data-task="reckoning"><span class="ag-status-pill"></span><div class="ag-icon">⚖️</div><div class="ag-name">Reckoning</div><div class="ag-sub">Month-end · deep</div></button>
+        <button class="ag" data-task="interrogator"><span class="ag-status-pill"></span><div class="ag-icon">🎯</div><div class="ag-name">Interrogator</div><div class="ag-sub">On demand · goals</div></button>
+        <button class="ag" data-task="closer"><span class="ag-status-pill"></span><div class="ag-icon">📞</div><div class="ag-name">Closer</div><div class="ag-sub">On demand · CYSM</div></button>
+        <button class="ag" data-task="mercenary"><span class="ag-status-pill"></span><div class="ag-icon">🗡️</div><div class="ag-name">Mercenary</div><div class="ag-sub">On demand · subs</div></button>
+        <button class="ag" data-task="scout"><span class="ag-status-pill"></span><div class="ag-icon">🔭</div><div class="ag-name">Scout</div><div class="ag-sub">On demand · hires</div></button>
+        <button class="ag" data-task="synthesizer"><span class="ag-status-pill"></span><div class="ag-icon">🧠</div><div class="ag-name">Synthesizer</div><div class="ag-sub">On demand · scroll</div></button>
+        <button class="ag" data-task="rossland-marketing"><span class="ag-status-pill"></span><div class="ag-icon">🏔️</div><div class="ag-name">Rossland Mktg</div><div class="ag-sub">Daily 8am · RMS</div></button>
+        <button class="ag" data-task="conductor"><span class="ag-status-pill"></span><div class="ag-icon">🚂</div><div class="ag-name">Conductor</div><div class="ag-sub">CoS · open dispatch</div></button>
+      </div>
     </div>
+  </div>
+
+  <!-- ===== Commands log ===== -->
+  <div class="card">
+    <div class="card-h"><h2>📋 Commands log</h2><span class="meta" id="cmd-count">0</span></div>
+    <div class="card-b" id="cmd-list"><div class="empty">No dispatches yet.</div></div>
   </div>
 </div>
 
@@ -515,7 +645,6 @@
   <button class="nav-item on" data-view="today"><div class="ico">🎯</div>Today</button>
   <button class="nav-item" data-view="body"><div class="ico">🫀</div>Body</button>
   <button class="nav-item" data-view="tasks"><div class="ico">✅</div>Tasks</button>
-  <button class="nav-item" data-view="partners"><div class="ico">🤝</div>Partners</button>
   <button class="nav-item" data-view="agents"><div class="ico">🤖</div>Agents</button>
 </nav>
 
@@ -533,7 +662,7 @@
   const part = hr < 12 ? 'morning' : hr < 17 ? 'afternoon' : 'evening';
   document.getElementById('greet').textContent = `Good ${part}, Pepe.`;
 
-  // ===== Bart's voice =====
+  // ===== Bart's voice (unchanged from v1) =====
   const voices = {
     ds: { tag: 'Bart · Drill Sgt mode', body: `<b>Pepe.</b> Up. Namecheap still bleeding — fix in 90s. <b>$2,443/mo on the table</b>, 7 founder slots × 30 days. What did you ship yesterday? Honest. <b>ONE play before lunch. Type it. I'm checking at 5.</b>` },
     secretary: { tag: 'Bart · Secretary mode', body: `Bart, mid-day. 4 ventures stable, CYSM is the lever. Namecheap fire still open. <b>What did you ship this morning?</b> Tell me — I'll log it and tee up the afternoon.` },
@@ -598,7 +727,7 @@
     return `${mons[d.getMonth()]} ${d.getDate()}`;
   }
 
-  function entryHtml(e, opts = {}) {
+  function entryHtml(e) {
     const typeEmoji = {note:'📝',task:'✅',workout:'🏋️',food:'🍽️',water:'💧',sleep:'😴',money:'💰',deadline:'⏰',idea:'💡'}[e.type] || '📝';
     const typeLabel = e.type[0].toUpperCase() + e.type.slice(1);
     const checkBtn = e.type === 'task' ? `<button class="e-check" data-id="${e.id}" aria-label="Mark done">✓</button>` : '';
@@ -621,38 +750,32 @@
 
   function renderAll() {
     const entries = loadEntries();
-    // RECENT (Today tab) — last 6, any type, any day
     const recent = entries.slice().reverse().slice(0, 6);
     const recentEl = document.getElementById('notes-list');
     document.getElementById('note-count').textContent = entries.length;
     recentEl.innerHTML = recent.length ? recent.map(e => entryHtml(e)).join('') : '<div class="empty">No captures yet. Tap + to start.</div>';
 
-    // BODY tab — today's body entries
     const bodyTypes = ['workout','food','water','sleep'];
     const bodyToday = entries.filter(e => bodyTypes.includes(e.type) && isToday(e.t));
     const bodyEl = document.getElementById('body-list');
     document.getElementById('body-count').textContent = bodyToday.length;
     bodyEl.innerHTML = bodyToday.length ? bodyToday.slice().reverse().map(e => entryHtml(e)).join('') : '<div class="empty">Nothing logged today.</div>';
 
-    // BODY SCORE
     document.getElementById('bs-water').textContent = bodyToday.filter(e => e.type === 'water').length;
     document.getElementById('bs-meals').textContent = bodyToday.filter(e => e.type === 'food').length;
     document.getElementById('bs-workout').textContent = bodyToday.filter(e => e.type === 'workout').length > 0 ? '✓' : '—';
     document.getElementById('bs-sleep').textContent = bodyToday.filter(e => e.type === 'sleep').length > 0 ? '✓' : '—';
 
-    // TASKS tab — open tasks
     const tasks = entries.filter(e => e.type === 'task' && !e.done);
     const tasksEl = document.getElementById('tasks-list');
     document.getElementById('task-count').textContent = tasks.length;
     tasksEl.innerHTML = tasks.length ? tasks.slice().reverse().map(e => entryHtml(e)).join('') : '<div class="empty">No open tasks. Tap + to add one.</div>';
 
-    // DEADLINES
     const deadlines = entries.filter(e => e.type === 'deadline');
     const deadlinesEl = document.getElementById('deadlines-list');
     document.getElementById('deadline-count').textContent = deadlines.length;
     deadlinesEl.innerHTML = deadlines.length ? deadlines.slice().reverse().map(e => entryHtml(e)).join('') : '<div class="empty">No deadlines saved.</div>';
 
-    // Wire up task checkmarks
     document.querySelectorAll('.e-check').forEach(c => c.addEventListener('click', toggleTask));
   }
 
@@ -668,89 +791,7 @@
     }
   }
 
-  // ===== Partners (added) =====
-  const PARTNERS_FALLBACK = {
-    updated: "2026-06-17",
-    followups: [
-      { date:"2026-06-18", who:"Bow Cycle (Jack)", act:"Email re: fall RED road-trip — dates, # riders, comp vs. theirs", ch:"Email" },
-      { date:"2026-06-18", who:"Freedom Bike Shop (Josh)", act:"Confirm shop-trip weekend; bike park opens Jun 20", ch:"Email" },
-      { date:"2026-06-18", who:"Send 5 staged replies", act:"Establishment, Cloudside, Dancing Bear, Squamish Inn, Whistler Lodge (attach flyer)", ch:"Email" },
-      { date:"2026-06-18", who:"Gerick / Cycology / Sacred Ride", act:"Call or DM — pitch guest rental/service perk", ch:"Call" },
-      { date:"2026-06-19", who:"Mt. Begbie / Finley's / Canmore Brewing", act:"Call to schedule", ch:"Phone" },
-      { date:"2026-06-20", who:"B&T's / Hooper's", act:"Confirm giveaway perk + logo/IG handle", ch:"Email" },
-      { date:"2026-06-22", who:"Mercantile, Revolution, Bright Eye, La Ruelle, Gabriella's, Adventure Hotel", act:"Follow up if no reply", ch:"Email" },
-      { date:"2026-06-24", who:"Lake Breeze, District Wine, Beer Farmers, Tofino", act:"Follow up BC-network sends", ch:"Email" },
-      { date:"2026-06-29", who:"Wild Life Distillery (Martine)", act:"Back from vacation — lock perk + content shoot date", ch:"Email" }
-    ],
-    pipeline: [
-      { name:"Freedom Bike Shop", town:"Nelson", status:"hot", next:"Confirm weekend + open date" },
-      { name:"Wild Life Distillery", town:"Canmore", status:"hot", next:"Reconnect Jun 29 — perk + shoot" },
-      { name:"Rebound Cycle", town:"Canmore", status:"hot", next:"Get logo/link + perk wording" },
-      { name:"Bow Cycle", town:"Calgary", status:"hot", next:"Firm up fall road trip" },
-      { name:"B&T's Hard Knock Cafe", town:"Rossland", status:"warm", next:"Confirm giveaway perk + logo" },
-      { name:"Hooper's Bakery", town:"Rossland", status:"warm", next:"Confirm giveaway perk + logo" },
-      { name:"Revolution Cycles", town:"Rossland", status:"warm", next:"Await reply (co-host + guide)" },
-      { name:"Mountain Mercantile", town:"Canmore", status:"warm", next:"Sent socials; await perk" },
-      { name:"Mt. Begbie Brewing", town:"Revelstoke", status:"warm", next:"Schedule call" },
-      { name:"Finley's Bar & Grill", town:"Nelson", status:"warm", next:"Schedule call" },
-      { name:"Canmore Brewing", town:"Canmore", status:"warm", next:"Schedule call" },
-      { name:"Bright Eye Brewing", town:"Nelson", status:"await", next:"Resent — follow up Jun 22" },
-      { name:"La Ruelle Bakery", town:"Nelson", status:"await", next:"Resent — follow up Jun 22" },
-      { name:"Gabriella's", town:"Rossland", status:"await", next:"Resent — follow up Jun 22" },
-      { name:"Adventure Hotel / Louie's", town:"Nelson", status:"await", next:"Resent — follow up Jun 22" },
-      { name:"Lake Breeze / District / Beer Farmers / Tofino", town:"BC", status:"await", next:"BC-network — follow up Jun 24" },
-      { name:"Establishment Brewing", town:"Calgary", status:"warm", next:"Review draft (cross-promo clarified)" },
-      { name:"Cloudside / Dancing Bear / Squamish / Whistler Lodge", town:"BC", status:"ref", next:"Reciprocal referrals — review drafts" },
-      { name:"Gerick Cycle", town:"Trail/Nelson", status:"contact", next:"Call/DM — no public email" },
-      { name:"Cycology Bikes", town:"Castlegar", status:"contact", next:"Call/DM — no public email" },
-      { name:"The Sacred Ride", town:"Nelson", status:"contact", next:"Call/DM — no public email" }
-    ]
-  };
-  function pSlug(f){ return 'ap_' + f.date + '_' + String(f.who).slice(0,12).replace(/\W/g,''); }
-  function pDone(k){ return localStorage.getItem(k) === '1'; }
-  function fmtMD(d){ const x = new Date(d + 'T00:00:00'); return mons[x.getMonth()] + ' ' + x.getDate(); }
-  function partnerRow(f){
-    const k = pSlug(f);
-    return `<div class="p-row${pDone(k)?' done':''}" data-pk="${k}">
-      <button class="p-check" data-pk="${k}" aria-label="Mark done">✓</button>
-      <span class="p-date">${fmtMD(f.date)}</span>
-      <div style="flex:1"><div class="p-who">${escapeHtml(f.who)}</div><div class="p-act">${escapeHtml(f.act)}</div></div>
-      <span class="p-chip p-${f.ch}">${escapeHtml(f.ch)}</span>
-    </div>`;
-  }
-  function renderPartners(data){
-    const t = new Date(); t.setHours(0,0,0,0);
-    const fu = (data.followups || []).slice().sort((a,b)=> a.date.localeCompare(b.date));
-    const due = fu.filter(f => new Date(f.date + 'T00:00:00') <= t);
-    const up = fu.filter(f => new Date(f.date + 'T00:00:00') > t);
-    document.getElementById('p-due-count').textContent = due.length;
-    document.getElementById('p-due').innerHTML = due.length ? due.map(partnerRow).join('') : '<div class="empty">Nothing overdue. 🎉</div>';
-    document.getElementById('p-up-count').textContent = up.length;
-    document.getElementById('p-up').innerHTML = up.length ? up.map(partnerRow).join('') : '<div class="empty">Nothing scheduled.</div>';
-    const stLabel = { hot:'Hot', warm:'Warm', await:'Awaiting', ref:'Referral', contact:'Contact' };
-    const pipe = data.pipeline || [];
-    document.getElementById('p-pipe-count').textContent = pipe.length;
-    document.getElementById('p-pipe').innerHTML = pipe.map(p =>
-      `<div class="p-tile"><div style="flex:1"><div class="p-who">${escapeHtml(p.name)}</div><div class="p-act">${escapeHtml(p.town)} · ${escapeHtml(p.next)}</div></div><span class="p-st st-${p.status}">${stLabel[p.status] || p.status}</span></div>`
-    ).join('');
-    document.getElementById('p-updated').textContent = data.updated ? ('Data updated ' + data.updated + ' · edit partners.json to refresh') : '';
-    document.querySelectorAll('.p-check').forEach(c => c.addEventListener('click', e => {
-      const k = e.currentTarget.dataset.pk;
-      const nowDone = !pDone(k);
-      localStorage.setItem(k, nowDone ? '1' : '0');
-      e.currentTarget.closest('.p-row').classList.toggle('done', nowDone);
-    }));
-  }
-  async function initPartners(){
-    let data = PARTNERS_FALLBACK;
-    try {
-      const r = await fetch('partners.json', { cache: 'no-store' });
-      if (r.ok) data = await r.json();
-    } catch (err) { /* offline / missing → fallback */ }
-    renderPartners(data);
-  }
-
-  // ===== Modal =====
+  // ===== Capture Modal (unchanged) =====
   const fab = document.getElementById('fab');
   const bg = document.getElementById('modal-bg');
   const mod = document.getElementById('modal');
@@ -806,7 +847,7 @@
     renderAll();
   }
 
-  // ===== Quick log buttons (Body tab) =====
+  // ===== Quick log buttons =====
   document.querySelectorAll('.quick-btn').forEach(b => b.addEventListener('click', () => {
     const q = b.dataset.quick;
     const map = { water: { type: 'water', text: '1 glass' }, meal: { type: 'food', text: '' }, workout: { type: 'workout', text: '' }, sleep: { type: 'sleep', text: '' } };
@@ -821,40 +862,395 @@
     }
   }));
 
-  // ===== Agents =====
-  const inCowork = typeof window.cowork !== 'undefined' && window.cowork.runScheduledTask;
-  const taskIds = {
-    quarterback: 'quarterback-morning-brief',
-    hustler: 'hustler-money-hunter',
-    scoreboard: 'scoreboard-weekly-review',
-    reckoning: 'reckoning-monthly-report',
-    interrogator: 'interrogator-goal-setter',
-    mercenary: 'mercenary-sub-killer',
-    closer: 'closer-cysm-sales',
-    scout: 'scout-hire-recommender',
-    synthesizer: 'synthesizer-content-capture'
+  // ===================================================================
+  // ===== CONVERGED CYSM DISPATCH LAYER  ===============================
+  // ===================================================================
+
+  // Multi-company backend routes
+  const COND_ENDPOINTS = {
+    CYSM: 'http://167.233.114.119/cos/dispatch',
+    'JOïA': null,
+    RMS:  null,
+    Toque: null
   };
-  document.querySelectorAll('.ag').forEach(b => b.addEventListener('click', async () => {
-    const status = document.getElementById('agent-status');
-    const key = b.dataset.task;
-    if (!inCowork) {
-      status.classList.add('show');
-      status.textContent = `Open Anchor in Cowork to dispatch agents. Phone version = capture + view.`;
+
+  // Token management
+  function getCondToken() { return localStorage.getItem('cond_api_token') || ''; }
+  function setCondToken(t) { if (t) localStorage.setItem('cond_api_token', t); }
+  function clearCondToken() { localStorage.removeItem('cond_api_token'); }
+  function promptToken(reason) {
+    const msg = reason || 'Paste your CYSM API token (one-time, saved on device):';
+    const t = prompt(msg) || '';
+    if (t) setCondToken(t);
+    return t;
+  }
+  function ensureToken() {
+    let t = getCondToken();
+    if (!t) t = promptToken();
+    return t;
+  }
+
+  // Cross-cutting dispatch log
+  function loadDispatchLog() {
+    try { return JSON.parse(localStorage.getItem('anchor_dispatch_log') || '[]'); }
+    catch { return []; }
+  }
+  function saveDispatchLog(arr) {
+    localStorage.setItem('anchor_dispatch_log', JSON.stringify(arr.slice(-50)));
+  }
+  function logDispatch(entry) {
+    const log = loadDispatchLog();
+    log.push(entry);
+    saveDispatchLog(log);
+    renderCmdLog();
+  }
+  function updateDispatchEntry(id, patch) {
+    const log = loadDispatchLog();
+    const item = log.find(x => x.id === id);
+    if (item) {
+      Object.assign(item, patch);
+      saveDispatchLog(log);
+      renderCmdLog();
+    }
+  }
+
+  // Core dispatch function — used by Tell Bart, Extract Alpha, agent buttons
+  async function dispatchToCysm({ goal, biz, agent }) {
+    const endpoint = COND_ENDPOINTS[biz];
+    if (!endpoint) {
+      alert(`No backend wired for ${biz} yet. CYSM only for now.`);
+      return null;
+    }
+    let token = ensureToken();
+    if (!token) return null;
+
+    const localId = 'local-' + Date.now() + '-' + Math.random().toString(36).slice(2,6);
+    const entry = {
+      id: localId, goal: goal, biz: biz, agent: agent || 'dispatcher',
+      status: 'running', t: Date.now(), endpoint: endpoint
+    };
+    logDispatch(entry);
+
+    try {
+      const body = { goal: goal, biz: biz };
+      if (agent) body.agent = agent;
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CYSM-API-TOKEN': token, 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify(body)
+      });
+      if (res.status === 401) {
+        clearCondToken();
+        token = promptToken('Token rejected. Paste a fresh CYSM API token:');
+        if (!token) {
+          updateDispatchEntry(localId, { status: 'failed', result: 'Auth failed — token missing' });
+          return null;
+        }
+        updateDispatchEntry(localId, { status: 'failed', result: 'Auth failed — retry the action' });
+        return null;
+      }
+      if (!res.ok) {
+        const errText = await res.text();
+        updateDispatchEntry(localId, { status: 'failed', result: `${res.status}: ${errText.slice(0, 200)}` });
+        return null;
+      }
+      const data = await res.json();
+      const realId = data.dispatch_id || localId;
+      updateDispatchEntry(localId, { id: realId, status: 'running', result: data.summary || 'Dispatched — waiting for status' });
+      pollDispatch(realId, endpoint, token);
+      return realId;
+    } catch (err) {
+      updateDispatchEntry(localId, { status: 'failed', result: 'Network error: ' + (err.message || 'unknown') });
+      return null;
+    }
+  }
+
+  async function pollDispatch(id, endpoint, token) {
+    if (!id || id.startsWith('local-')) return;
+    const statusUrl = endpoint.replace('/cos/dispatch', '/api/cos/' + id);
+    let tries = 0;
+    const tick = async () => {
+      tries++;
+      try {
+        const r = await fetch(statusUrl, {
+          headers: { 'X-CYSM-API-TOKEN': token, 'Authorization': 'Bearer ' + token }
+        });
+        if (r.ok) {
+          const d = await r.json();
+          const status = d.status || 'running';
+          const result = d.summary || d.result || null;
+          updateDispatchEntry(id, { status: status, result: result });
+          if (['done','failed','blocked'].includes(status)) return;
+        }
+      } catch {}
+      if (tries < 24) setTimeout(tick, 5000);
+    };
+    setTimeout(tick, 3000);
+  }
+
+  // ===== TELL BART command line =====
+  let tbBiz = 'CYSM';
+  document.querySelectorAll('#tb-biz-pills .tb-pill').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('#tb-biz-pills .tb-pill').forEach(x => x.classList.toggle('on', x === p));
+    tbBiz = p.dataset.tbbiz;
+  }));
+  const tbInput = document.getElementById('tb-input');
+  const tbBtn = document.getElementById('tb-dispatch');
+  const tbStatus = document.getElementById('tb-status');
+  async function fireTellBart() {
+    const goal = tbInput.value.trim();
+    if (!goal) { tbInput.focus(); return; }
+    tbBtn.disabled = true; tbBtn.textContent = 'Dispatching…';
+    tbStatus.classList.add('show');
+    tbStatus.textContent = `→ Routing to ${tbBiz}…`;
+    const id = await dispatchToCysm({ goal: goal, biz: tbBiz });
+    tbBtn.disabled = false; tbBtn.textContent = 'Dispatch';
+    if (id) {
+      tbInput.value = '';
+      tbStatus.textContent = `✓ Dispatched (${id.slice(0,12)}…) — check Commands log on Agents tab`;
+      setTimeout(() => tbStatus.classList.remove('show'), 6000);
+    } else {
+      tbStatus.textContent = `✗ Dispatch failed. Check Commands log.`;
+    }
+  }
+  tbBtn.addEventListener('click', fireTellBart);
+  tbInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') fireTellBart(); });
+
+  // ===== EXTRACT ALPHA =====
+  let alphaBiz = 'CYSM';
+  document.querySelectorAll('#alpha-biz-pills .pill').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('#alpha-biz-pills .pill').forEach(x => x.classList.toggle('on', x === p));
+    alphaBiz = p.dataset.abiz;
+  }));
+  const alphaInput = document.getElementById('alpha-input');
+  const alphaBtn = document.getElementById('alpha-extract');
+  const alphaStatus = document.getElementById('alpha-status');
+  async function fireExtractAlpha() {
+    const url = alphaInput.value.trim();
+    if (!url) { alphaInput.focus(); return; }
+    if (!/^https?:\/\//.test(url)) {
+      alphaStatus.classList.add('show');
+      alphaStatus.textContent = '✗ Needs a real URL (http/https)';
       return;
     }
-    status.classList.add('show');
-    status.textContent = 'Dispatching…';
+    const bizForGoal = alphaBiz === 'Personal' ? 'Pepe personally' : alphaBiz;
+    const goal = `Extract actionable alpha from ${url} — relevant to ${bizForGoal}`;
+    alphaBtn.disabled = true; alphaBtn.textContent = 'Extracting…';
+    alphaStatus.classList.add('show');
+    alphaStatus.textContent = `→ Firing Synthesizer on ${alphaBiz}…`;
+    const dispatchBiz = COND_ENDPOINTS[alphaBiz] ? alphaBiz : 'CYSM';
+    const id = await dispatchToCysm({ goal: goal, biz: dispatchBiz, agent: 'anchor-synthesizer' });
+    alphaBtn.disabled = false; alphaBtn.textContent = 'Extract Alpha';
+    if (id) {
+      alphaInput.value = '';
+      alphaStatus.textContent = `✓ Synthesizer fired — check Commands log`;
+      setTimeout(() => alphaStatus.classList.remove('show'), 6000);
+    } else {
+      alphaStatus.textContent = `✗ Extract failed. Check Commands log.`;
+    }
+  }
+  alphaBtn.addEventListener('click', fireExtractAlpha);
+
+  // ===================================================================
+  // ===== FIRES (stacked, persistent, deep-linkable) ==================
+  // ===================================================================
+  const DEFAULT_FIRES = [
+    { id: 'fire-netlify-suspended', rank: 1, title: 'Netlify CanYouSeeMe.ai SUSPENDED', body: 'Out of 300 credit allowance May 27. CYSM may be offline.', link: 'https://app.netlify.com/teams/jose-da-cunha/billing', linkLabel: 'Open Netlify' },
+    { id: 'fire-netlify-token', rank: 2, title: 'Netlify token EXPIRED Jun 2', body: '"CanYouSeeMe Deploy" PAT — generate new, update CI.', link: 'https://app.netlify.com/user/applications#personal-access-tokens', linkLabel: 'New token' },
+    { id: 'fire-namecheap', rank: 3, title: 'Namecheap auto-renew failing', body: '5+ failed attempts since May 21 — top up funds.', link: 'https://ap.www.namecheap.com/Profile/Tools/AccountBalance', linkLabel: 'Open Namecheap' },
+    { id: 'fire-stripe-amex', rank: 4, title: 'Stripe — update Amex billing address', body: '2 reminders since May 13.', link: 'https://dashboard.stripe.com/settings/billing/payment-methods', linkLabel: 'Open Stripe' },
+    { id: 'fire-geoff-rms', rank: 5, title: 'Geoff arrives RMS Jun 14', body: 'Send check-in instructions BEFORE Friday.', link: 'https://www.airbnb.com/hosting/reservations', linkLabel: 'Open Airbnb' }
+  ];
+  function loadFires() {
+    const stored = localStorage.getItem('anchor_fires');
+    if (stored) {
+      try { return JSON.parse(stored); } catch {}
+    }
+    return DEFAULT_FIRES.slice();
+  }
+  function saveFires(fires) { localStorage.setItem('anchor_fires', JSON.stringify(fires)); }
+  function renderFires() {
+    const fires = loadFires();
+    const el = document.getElementById('fires-list');
+    document.getElementById('fire-count').textContent = `${fires.length} open`;
+    if (!fires.length) {
+      el.innerHTML = '<div class="empty">🎉 All fires out. Go ship something.</div>';
+      return;
+    }
+    el.innerHTML = fires.map(f => `
+      <div class="fire-item" data-fid="${f.id}">
+        <div class="fire-item-h">
+          <div class="fire-rank">${f.rank}</div>
+          <div style="flex:1">
+            <div class="fire-item-title">${escapeHtml(f.title)}</div>
+            <div class="fire-item-body">${escapeHtml(f.body)}</div>
+          </div>
+        </div>
+        <div class="fire-item-actions">
+          <button class="fire-link-btn" data-flink="${escapeHtml(f.link)}">${escapeHtml(f.linkLabel || 'Open')} →</button>
+          <button class="fire-done-btn" data-fdone="${f.id}">✓ Mark done</button>
+        </div>
+      </div>
+    `).join('');
+    el.querySelectorAll('[data-flink]').forEach(b => b.addEventListener('click', (e) => {
+      window.open(e.currentTarget.dataset.flink, '_blank');
+    }));
+    el.querySelectorAll('[data-fdone]').forEach(b => b.addEventListener('click', (e) => {
+      const id = e.currentTarget.dataset.fdone;
+      const fires = loadFires().filter(x => x.id !== id);
+      saveFires(fires);
+      renderFires();
+    }));
+  }
+
+  // ===================================================================
+  // ===== WIDE ANGLE stats (fetches /api/status from VPS) =============
+  // ===================================================================
+  async function fetchWideAngle() {
+    const updated = document.getElementById('wa-updated');
+    updated.textContent = 'Fetching…';
+    const endpoint = COND_ENDPOINTS.CYSM;
+    if (!endpoint) {
+      updated.textContent = 'No CYSM endpoint configured';
+      return;
+    }
+    const statusUrl = endpoint.replace('/cos/dispatch', '/api/status');
+    const token = getCondToken();
     try {
-      await window.cowork.runScheduledTask(taskIds[key]);
-      status.textContent = `✓ ${b.querySelector('.ag-name').textContent} dispatched. Check chat.`;
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) {
+        headers['X-CYSM-API-TOKEN'] = token;
+        headers['Authorization'] = 'Bearer ' + token;
+      }
+      const r = await fetch(statusUrl, { headers: headers });
+      if (!r.ok) throw new Error(`${r.status}`);
+      const d = await r.json();
+      document.getElementById('wa-today').textContent = d.sent_today != null ? d.sent_today : '—';
+      document.getElementById('wa-today-n').textContent = `target 100 / floor 75`;
+      document.getElementById('wa-week').textContent = d.sent_week != null ? d.sent_week : '—';
+      document.getElementById('wa-hot').textContent = d.hot_leads != null ? d.hot_leads : '—';
+      document.getElementById('wa-replies').textContent = d.replies_pending != null ? d.replies_pending : '—';
+      document.getElementById('wa-pace').textContent = d.founding_pace || '—';
+      if (d.founding_left != null) {
+        document.getElementById('wa-pace-n').textContent = `${d.founding_left} slots left · 30-day clock`;
+      }
+      const t = new Date();
+      updated.textContent = `Updated ${t.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
     } catch (err) {
-      status.textContent = `Failed: ${err.message || 'unknown'}`;
+      updated.textContent = `Couldn't reach VPS (${err.message || 'offline'})`;
+    }
+  }
+  document.getElementById('wa-refresh').addEventListener('click', fetchWideAngle);
+  setInterval(fetchWideAngle, 60000);
+  // First load — fire once after small delay so app shows fast
+  setTimeout(fetchWideAngle, 800);
+
+  // ===================================================================
+  // ===== AGENTS — 11 buttons, all wired to /cos/dispatch =============
+  // ===================================================================
+  // Agent key → backend agent name (matches cysm/agents/anchor-*.md)
+  const AGENT_MAP = {
+    quarterback:         { agent: 'anchor-quarterback',         goal: 'Run the Quarterback morning brief — top 3 plays for today, $350/hr lens.' },
+    hustler:             { agent: 'anchor-hustler',             goal: 'Hunt today\'s money — what\'s the highest-EV move in the next 4 hours?' },
+    scoreboard:          { agent: 'anchor-scoreboard',          goal: 'Run the weekly Scoreboard — what shipped, what slipped, score the week.' },
+    reckoning:           { agent: 'anchor-reckoning',           goal: 'Monthly Reckoning — honest report card across all 4 ventures.' },
+    interrogator:        { agent: 'anchor-interrogator',        goal: 'Run the Interrogator on goals — pressure-test what I said I\'d do this month.' },
+    closer:              { agent: 'anchor-closer',              goal: 'Generate 3 CYSM Founding-10 outreach DMs ready to send.' },
+    mercenary:           { agent: 'anchor-mercenary',           goal: 'Audit my subscriptions — which ones get killed this week?' },
+    scout:               { agent: 'anchor-scout',               goal: 'Recommend one hire I should make in the next 30 days.' },
+    synthesizer:         { agent: 'anchor-synthesizer',         goal: 'Synthesize the anchor-inbox captures — pull actions out of the scroll.' },
+    'rossland-marketing':{ agent: 'anchor-rossland-marketing',  goal: 'Run today\'s Rossland Marketing brief for RMS.' },
+    conductor:           { agent: 'anchor-quarterback',         goal: 'Open dispatch — decompose this goal and route to specialists.' }
+  };
+
+  let agBiz = 'CYSM';
+  document.querySelectorAll('#ag-biz-pills .pill').forEach(p => p.addEventListener('click', () => {
+    document.querySelectorAll('#ag-biz-pills .pill').forEach(x => x.classList.toggle('on', x === p));
+    agBiz = p.dataset.agbiz;
+  }));
+
+  function setAgentStatus(btn, status, text) {
+    const pill = btn.querySelector('.ag-status-pill');
+    if (!pill) return;
+    pill.className = 'ag-status-pill show ' + status;
+    pill.textContent = text || status;
+    if (status === 'done' || status === 'failed') {
+      setTimeout(() => pill.classList.remove('show'), 8000);
+    }
+  }
+
+  document.querySelectorAll('.ag').forEach(b => b.addEventListener('click', async () => {
+    const key = b.dataset.task;
+    const cfg = AGENT_MAP[key];
+    if (!cfg) return;
+
+    // Conductor opens a goal prompt; everyone else fires their default goal
+    let goal = cfg.goal;
+    if (key === 'conductor') {
+      const custom = prompt('🚂 Conductor — what\'s the goal?\n(e.g. "Find 50 luxury car dealerships in Vancouver, send custom audits by Friday")');
+      if (!custom || !custom.trim()) return;
+      goal = custom.trim();
+    }
+
+    const dispatchBiz = COND_ENDPOINTS[agBiz] ? agBiz : 'CYSM';
+    if (!COND_ENDPOINTS[agBiz]) {
+      alert(`No backend wired for ${agBiz} yet. CYSM only for now — routing to CYSM.`);
+    }
+
+    setAgentStatus(b, 'running', 'dispatching');
+    const id = await dispatchToCysm({ goal: goal, biz: dispatchBiz, agent: cfg.agent });
+    if (id) {
+      setAgentStatus(b, 'running', 'running');
+      // Poll updates handled inside dispatchToCysm; reflect status from log
+      const poll = setInterval(() => {
+        const item = loadDispatchLog().find(x => x.id === id);
+        if (!item) { clearInterval(poll); return; }
+        if (['done','failed','blocked'].includes(item.status)) {
+          setAgentStatus(b, item.status, item.status);
+          clearInterval(poll);
+        }
+      }, 2000);
+      setTimeout(() => clearInterval(poll), 180000);
+    } else {
+      setAgentStatus(b, 'failed', 'failed');
     }
   }));
 
-  // First render
+  // ===================================================================
+  // ===== COMMANDS LOG (last 10 dispatches) ===========================
+  // ===================================================================
+  function renderCmdLog() {
+    const log = loadDispatchLog().slice().reverse().slice(0, 10);
+    document.getElementById('cmd-count').textContent = log.length;
+    const el = document.getElementById('cmd-list');
+    if (!log.length) {
+      el.innerHTML = '<div class="empty">No dispatches yet.</div>';
+      return;
+    }
+    el.innerHTML = log.map(h => {
+      const ago = Math.round((Date.now() - h.t) / 60000);
+      const agoText = ago < 1 ? 'just now' : ago < 60 ? `${ago}m ago` : `${Math.round(ago/60)}h ago`;
+      const goalTrunc = h.goal && h.goal.length > 90 ? h.goal.slice(0, 90) + '…' : h.goal;
+      return `<div class="cmd-item" data-cmdid="${h.id}">
+        <div class="cmd-meta">
+          <span class="cmd-agent">${escapeHtml(h.agent || 'dispatch')}</span>
+          <span>${h.biz}</span>
+          <span>${agoText}</span>
+          <span class="status-pill ${h.status}">${h.status}</span>
+        </div>
+        <div class="cmd-goal">${escapeHtml(goalTrunc || '')}</div>
+        ${h.result ? `<div class="cmd-result">${escapeHtml(h.result)}</div>` : ''}
+      </div>`;
+    }).join('');
+    el.querySelectorAll('.cmd-item').forEach(c => c.addEventListener('click', () => {
+      c.classList.toggle('expanded');
+    }));
+  }
+
+  // ===== Initial paint =====
   renderAll();
-  initPartners();
+  renderFires();
+  renderCmdLog();
 })();
 </script>
 </body>
