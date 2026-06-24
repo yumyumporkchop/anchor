@@ -9,6 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Anchor">
 <meta name="mobile-web-app-capable" content="yes">
+<!-- v3 Vercel proxy -->
 
 <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkFuY2hvciIsCiAgInNob3J0X25hbWUiOiAiQW5jaG9yIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmNmY1ZjEiLAogICJ0aGVtZV9jb2xvciI6ICIjMGY0Yzc1IiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFt7CiAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0EwT0RBZ05EZ3dJajQ4Y21WamRDQjNhV1IwYUQwaU5EZ3dJaUJvWldsbmFIUTlJalE0TUNJZ1ptbHNiRDBpSXpCbU5HTTNOU0lnTHo0OGRHVjRkQ0I0UFNJeU5EQWlJSGs5SWpJM01DSWdabTl1ZEMxbVlXMXBiSGs5SWtGeWFXRnNJaUJtYjI1MExYTnBlbVU5SWpJNE1DSWdabTl1ZEMxM1pXbG5hSFE5SWpnd01DSWdkR1Y0ZEMxaGJtTm9iM0k5SW0xcFpHUnNaU0lnWm1sc2JEMGlJMlptWmlJK1FUd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICJzaXplcyI6ICI0ODB4NDgwIiwKICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgfV0KfQ==">
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgNDgwIj48cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjQ4MCIgZmlsbD0iIzBmNGM3NSIvPjx0ZXh0IHg9IjI0MCIgeT0iMjcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjgwIiBmb250LXdlaWdodD0iODAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmIj5BPC90ZXh0Pjwvc3ZnPg==">
@@ -868,7 +869,7 @@
 
   // Multi-company backend routes
   const COND_ENDPOINTS = {
-    CYSM: 'http://167.233.114.119/cos/dispatch',
+    CYSM: '/api/dispatch',
     'JOïA': null,
     RMS:  null,
     Toque: null
@@ -967,7 +968,7 @@
 
   async function pollDispatch(id, endpoint, token) {
     if (!id || id.startsWith('local-')) return;
-    const statusUrl = endpoint.replace('/cos/dispatch', '/api/cos/' + id);
+    const statusUrl = '/api/cos/' + id;
     let tries = 0;
     const tick = async () => {
       tries++;
@@ -1114,7 +1115,7 @@
       updated.textContent = 'No CYSM endpoint configured';
       return;
     }
-    const statusUrl = endpoint.replace('/cos/dispatch', '/api/status');
+    const statusUrl = '/api/status';
     const token = getCondToken();
     try {
       const headers = { 'Content-Type': 'application/json' };
