@@ -1008,8 +1008,25 @@
     tbBtn.disabled = false; tbBtn.textContent = 'Dispatch';
     if (id) {
       tbInput.value = '';
-      tbStatus.textContent = `✓ Dispatched (${id.slice(0,12)}…) — check Commands log on Agents tab`;
-      setTimeout(() => tbStatus.classList.remove('show'), 6000);
+      tbStatus.textContent = `✓ Dispatched (${id.slice(0,12)}…) — waiting for result…`;
+      // Watch the dispatch log for completion and show the result inline (no tab switch).
+      const startedAt = Date.now();
+      const watch = setInterval(() => {
+        const item = loadDispatchLog().find(x => x.id === id);
+        if (!item) { clearInterval(watch); return; }
+        if (['done','failed','blocked'].includes(item.status)) {
+          clearInterval(watch);
+          const icon = item.status === 'done' ? '✓' : '✗';
+          const raw = item.result || '(no result returned)';
+          const snippet = raw.length > 200 ? raw.slice(0, 200) + '…' : raw;
+          tbStatus.textContent = `${icon} ${item.status.toUpperCase()} (${id.slice(0,12)}…): ${snippet}`;
+          // Stay visible — let Pepe read it; tap-anywhere on the status to dismiss
+          tbStatus.style.cursor = 'pointer';
+          tbStatus.onclick = () => { tbStatus.classList.remove('show'); tbStatus.onclick = null; };
+        }
+      }, 2000);
+      // Hard cap watcher at 3 minutes
+      setTimeout(() => clearInterval(watch), 180000);
     } else {
       tbStatus.textContent = `✗ Dispatch failed. Check Commands log.`;
     }
@@ -1126,14 +1143,27 @@
       const r = await fetch(statusUrl, { headers: headers });
       if (!r.ok) throw new Error(`${r.status}`);
       const d = await r.json();
-      document.getElementById('wa-today').textContent = d.sent_today != null ? d.sent_today : '—';
+      // /api/status returns nested shape: { outbound: {sent_today, sent_week}, hot_leads: [...], replies: {pending_review}, founding: {required_pace, remaining, days_remaining} }
+      const ob = d.outbound || {};
+      const rp = d.replies || {};
+      const fd = d.founding || {};
+      const hot = Array.isArray(d.hot_leads) ? d.hot_leads.length : (d.hot_leads != null ? d.hot_leads : null);
+      document.getElementById('wa-today').textContent = ob.sent_today != null ? ob.sent_today : '—';
       document.getElementById('wa-today-n').textContent = `target 100 / floor 75`;
-      document.getElementById('wa-week').textContent = d.sent_week != null ? d.sent_week : '—';
-      document.getElementById('wa-hot').textContent = d.hot_leads != null ? d.hot_leads : '—';
-      document.getElementById('wa-replies').textContent = d.replies_pending != null ? d.replies_pending : '—';
-      document.getElementById('wa-pace').textContent = d.founding_pace || '—';
-      if (d.founding_left != null) {
-        document.getElementById('wa-pace-n').textContent = `${d.founding_left} slots left · 30-day clock`;
+      document.getElementById('wa-week').textContent = ob.sent_week != null ? ob.sent_week : '—';
+      document.getElementById('wa-hot').textContent = hot != null ? hot : '—';
+      document.getElementById('wa-replies').textContent = rp.pending_review != null ? rp.pending_review : '—';
+      if (fd.required_pace != null) {
+        document.getElementById('wa-pace').textContent = `${fd.required_pace}/day`;
+      } else {
+        document.getElementById('wa-pace').textContent = '—';
+      }
+      const slotsLeft = (fd.remaining != null) ? fd.remaining : null;
+      const daysLeft = (fd.days_remaining != null) ? fd.days_remaining : null;
+      if (slotsLeft != null && daysLeft != null) {
+        document.getElementById('wa-pace-n').textContent = `${slotsLeft} slots left · ${daysLeft} days`;
+      } else if (slotsLeft != null) {
+        document.getElementById('wa-pace-n').textContent = `${slotsLeft} slots left · 30-day clock`;
       }
       const t = new Date();
       updated.textContent = `Updated ${t.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
