@@ -979,7 +979,7 @@
         if (r.ok) {
           const d = await r.json();
           const status = d.status || 'running';
-          const result = d.summary || d.result || null;
+          const result = d.report || d.summary || d.result || null;
           updateDispatchEntry(id, { status: status, result: result });
           if (['done','failed','blocked'].includes(status)) return;
         }
